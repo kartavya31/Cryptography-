@@ -1,0 +1,26 @@
+def machine():
+    keys = 'abcdefghijklmnopqrstuvwxyz !!'     # creating key strings
+    value = keys[-1] + keys[0:-1]               # auto generating the values of strings by taking last to first concatinated with the rest of the string
+    
+    #Python's zip() function is defined as zip(*iterables).The function takes in iterables as arguments and returns an iterator. This iterator generates a series of tuples containing elements from each iterable. zip() can accept any type of iterable, such as files, lists, tuples, dictionaries, sets, and so on.
+    
+    encryptdict = dict(zip(keys,value))        #encryption dictionary (1st type of dictionary)
+    decryptdict = dict(zip(value,keys))        #decryption dictionary (2nd type of dictionary)
+    
+    message = input("Enter your secret message:-")    #user input
+    node = input("CryptoNode: Encode(E) OR decode(D):-")
+    
+    if node.upper() == 'E': 
+        newMessage = ''.join([encryptdict[letter]               #encode and decode
+                              for letter in message.lower()])  #''.join in Python is an in-built method used to join an iterable's elements, separated by a string separator, which is specified by you. 
+    elif node.upper() == 'D':    
+        newMessage = ''.join([decryptdict[letter] 
+                              for letter in message.lower()])  
+    else:
+        print("Enter a correct choice")
+        
+    return newMessage.capitalize()             #The capitalize() method returns a string where the first character is upper case, and the rest is lower case.
+
+print(machine())
+
+
